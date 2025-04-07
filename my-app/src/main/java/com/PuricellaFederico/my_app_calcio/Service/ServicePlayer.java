@@ -1,10 +1,10 @@
 package com.PuricellaFederico.my_app_calcio.Service;
 
+import com.PuricellaFederico.my_app_calcio.Dao.PlayerRepository;
 import com.PuricellaFederico.my_app_calcio.Dto.PlayerResponse.PlayerResponse;
 import com.PuricellaFederico.my_app_calcio.EccezzioniControllate.GicoatoreException;
 import com.PuricellaFederico.my_app_calcio.Mapper.Mapper;
 import com.PuricellaFederico.my_app_calcio.Model.PlayerModel;
-import com.PuricellaFederico.my_app_calcio.Dao.DaoImplement.DaoPlayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,34 +16,34 @@ import java.util.List;
 public class ServicePlayer {
 
     @Autowired
-    DaoPlayer dao;
+    private PlayerRepository dao;
 
     @Autowired
-    Mapper mapper;
+    private Mapper mapper;
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForTeam(String nameTeam) {
-        return getPlayerResponses(dao.getPlayerForTeam(nameTeam));
+        return getPlayerResponses(dao.findByTeam_Name(nameTeam));
     }
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForRole(String role) {
-        return getPlayerResponses(dao.getPlayerForRole(role));
+        return getPlayerResponses(dao.findByRole(role));
     }
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForMinPay(Integer minPay) {
-        return getPlayerResponses(dao.getForMinSalary(minPay));
+        return getPlayerResponses(dao.findBySalaryLessThanEqual(minPay));
     }
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForMaxPay(Integer maxPay) {
-        return getPlayerResponses(dao.getForMaxSalary(maxPay));
+        return getPlayerResponses(dao.findBySalaryGreaterThanEqual(maxPay));
     }
 
     @Transactional(readOnly = true)
     public PlayerResponse getPlayerForName(String name , String surname) {
-        PlayerModel model = dao.getGetPlayerForNameSurname(name , surname).
+        PlayerModel model = dao.findByNameAndSurname(name , surname).
                 orElseThrow(() -> new GicoatoreException("Gicoatore non trovato : " , name , surname));
         return mapper.toPlayerResponse(model);
     }

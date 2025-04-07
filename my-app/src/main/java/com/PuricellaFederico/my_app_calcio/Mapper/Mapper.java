@@ -27,4 +27,5 @@ public interface Mapper {
     PlayerForTeamResponse toPlayerForTeamResponse(PlayerModel model);
 
     TeamStaticsResponse toTeamStaticsResponse(TeamModel squadraNonTrovata);
+
 }

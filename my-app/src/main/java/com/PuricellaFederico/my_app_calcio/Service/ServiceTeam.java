@@ -1,5 +1,6 @@
 package com.PuricellaFederico.my_app_calcio.Service;
 
+import com.PuricellaFederico.my_app_calcio.Dao.TeamRepository;
 import com.PuricellaFederico.my_app_calcio.Dto.TeamResponse.PlayerForTeamResponse;
 import com.PuricellaFederico.my_app_calcio.Dto.TeamResponse.TeamResponse;
 import com.PuricellaFederico.my_app_calcio.Dto.TeamResponse.TeamStaticsResponse;
@@ -7,7 +8,6 @@ import com.PuricellaFederico.my_app_calcio.EccezzioniControllate.SquadraExceptio
 import com.PuricellaFederico.my_app_calcio.Mapper.Mapper;
 import com.PuricellaFederico.my_app_calcio.Model.PlayerModel;
 import com.PuricellaFederico.my_app_calcio.Model.TeamModel;
-import com.PuricellaFederico.my_app_calcio.Dao.DaoImplement.DaoTeam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +19,13 @@ import java.util.List;
 public class ServiceTeam {
 
     @Autowired
-    DaoTeam dao;
+    private TeamRepository dao;
 
     @Autowired
-    Mapper mapper;
+    private Mapper mapper;
 
     public void updateTeam(String name, String outCome) {
-        TeamModel model = dao.getTeamForName(name).orElseThrow(() -> new SquadraException("Impossibile aggiornare squadra non trovata"));
+        TeamModel model = dao.findByNameContaining(name).orElseThrow(() -> new SquadraException("Impossibile aggiornare squadra non trovata"));
         if (outCome.equalsIgnoreCase("WIN")){
             model.setWin(model.getWin() + 1);
         } else if (outCome.equalsIgnoreCase("LOSE")) {
@@ -37,27 +37,27 @@ public class ServiceTeam {
     }
 
     public List<TeamResponse> getAllTeam() {
-        return getTeamResponses(dao.getAllTeam());
+        return getTeamResponses(dao.findAll());
     }
 
     public TeamResponse getTeamForName(String name) {
-        return mapper.toTeamResponse(dao.getTeamForName(name).
+        return mapper.toTeamResponse(dao.findByNameContaining(name).
                 orElseThrow(() -> new SquadraException("Squadra nome non trovato")));
     }
 
     public List<TeamResponse> getTeamMinBudget(Integer minBudget) {
-        return getTeamResponses(dao.getTeamMinBudget(minBudget).
+        return getTeamResponses(dao.findByBudgetYearLessThanEqual(minBudget).
             orElseThrow(() -> new SquadraException("Budget errato")));
     }
 
     public List<TeamResponse> getTeamMaxBudget(Integer maxBudget) {
-        return getTeamResponses(dao.getTeamMaxBudget(maxBudget).
+        return getTeamResponses(dao.findByBudgetYearGreaterThanEqual(maxBudget).
                 orElseThrow(() -> new SquadraException("Budget errato")));
     }
 
     public TeamResponse getTeamForPosition(Integer position) {
         List<TeamStaticsResponse> listTeam = new ArrayList<>();
-        List<TeamModel> modelList = dao.getAllTeam();
+        List<TeamModel> modelList = dao.findAll();
         for (TeamModel teamModel : modelList) {
             TeamStaticsResponse response = mapper.toTeamStaticsResponse(teamModel);
             listTeam.add(response);
@@ -84,7 +84,7 @@ public class ServiceTeam {
     }
 
     public TeamStaticsResponse getStaticsTeam(String name) {
-        TeamStaticsResponse response = mapper.toTeamStaticsResponse(dao.getTeamForName(name).
+        TeamStaticsResponse response = mapper.toTeamStaticsResponse(dao.findByNameContaining(name).
                 orElseThrow(() -> new SquadraException("Squadra non trovata")));
         response.setPoint();
         return response;
