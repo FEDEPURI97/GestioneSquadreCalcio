@@ -4,7 +4,7 @@ import com.puricellafederico.my_app_calcio.Dao.ChampionshipRepository;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
-import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionTorneo;
+import com.puricellafederico.my_app_calcio.customException.ExceptionTorneo;
 import com.puricellafederico.my_app_calcio.mapper.Mapper;
 import com.puricellafederico.my_app_calcio.model.ChampionshipModel;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;

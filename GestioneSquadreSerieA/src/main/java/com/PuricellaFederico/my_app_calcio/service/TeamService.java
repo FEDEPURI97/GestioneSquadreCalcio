@@ -2,7 +2,7 @@ package com.puricellafederico.my_app_calcio.service;
 
 import com.puricellafederico.my_app_calcio.Dao.TeamRepository;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
-import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionSquadra;
+import com.puricellafederico.my_app_calcio.customException.ExceptionSquadra;
 import com.puricellafederico.my_app_calcio.mapper.Mapper;
 import com.puricellafederico.my_app_calcio.model.PlayerModel;
 import com.puricellafederico.my_app_calcio.model.TeamModel;

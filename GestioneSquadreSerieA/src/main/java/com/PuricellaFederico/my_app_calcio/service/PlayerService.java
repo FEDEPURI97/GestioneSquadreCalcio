@@ -2,7 +2,7 @@ package com.puricellafederico.my_app_calcio.service;
 
 import com.puricellafederico.my_app_calcio.Dao.PlayerRepository;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerResponse;
-import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionGicoatore;
+import com.puricellafederico.my_app_calcio.customException.ExceptionGicoatore;
 import com.puricellafederico.my_app_calcio.mapper.Mapper;
 import com.puricellafederico.my_app_calcio.model.PlayerModel;
 import org.springframework.beans.factory.annotation.Autowired;

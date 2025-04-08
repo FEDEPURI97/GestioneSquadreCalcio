@@ -1,8 +1,8 @@
 package com.puricellafederico.my_app_calcio.controller;
 
-import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionGicoatore;
-import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionSquadra;
-import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionTorneo;
+import com.puricellafederico.my_app_calcio.customException.ExceptionGicoatore;
+import com.puricellafederico.my_app_calcio.customException.ExceptionSquadra;
+import com.puricellafederico.my_app_calcio.customException.ExceptionTorneo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

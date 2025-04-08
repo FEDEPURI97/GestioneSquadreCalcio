@@ -3,13 +3,15 @@ package com.puricellafederico.my_app_calcio.controller;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
 import com.puricellafederico.my_app_calcio.service.TeamService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,47 +19,51 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "Squadra", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
+@Validated
 public class TeamController {
 
     @Autowired
     TeamService service;
 
-    @ApiOperation(value = "Ritorna il mio nome", response = String.class)
-    @ApiResponses(value = @ApiResponse(code = 200, message = "Success|OK"))
-    @PutMapping("/{name}/{outCome}")//aggiorno l'esito della partita
-    public ResponseEntity<String> updateWinLoseDraw(@PathVariable String name ,@PathVariable String outCome){
+    @PutMapping("/updateMatch/{name}/{outCome}")
+    public ResponseEntity<String> updateWinLoseDraw(@PathVariable @NotBlank(message = "Error name not null") String name ,
+                                                    @PathVariable  @Pattern(regexp = "(win|lose|draw|WIN|LOSE|DRA)",
+                                                            message = "Error value option is 'win', 'lose' , 'draw' or this value uppercase")String outCome){
         service.updateTeam(name , outCome);
         return ResponseEntity.status(HttpStatus.OK).body("UpdateTeamSuccessFull");
     }
 
     @GetMapping("/")// ritorno tutte le squadre del campionato
     public ResponseEntity<List<TeamResponse>> getListTeam(){
-        return ResponseEntity.status(500).body(service.getAllTeam());
+        return ResponseEntity.status(HttpStatus.OK).body(service.getAllTeam());
     }
 
     @GetMapping("/getTeamName/{name}")//ritorno la squadra tramite il nome
-    public ResponseEntity<TeamResponse> getTeamForName(@PathVariable String name){
-        return ResponseEntity.status(500).body(service.getTeamForName(name));
+    public ResponseEntity<TeamResponse> getTeamForName(@PathVariable @NotBlank(message = "Error name not null") String name){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getTeamForName(name));
     }
 
-    @GetMapping("/getTeam/{minBudget}")//ritorno le squadre che hanno almeno un certo budget
-    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMin(@PathVariable Integer minBudget){
-        return ResponseEntity.status(500).body(service.getTeamMinBudget(minBudget));
+    @GetMapping("/getTeamMin/{minBudget}")//ritorno le squadre che hanno almeno un certo budget
+    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMin(@PathVariable @Min(message = "Error value min is 0", value = 0)
+                                                                      @Max(message = "Error value max is 1.000.000.000" , value = 1000000000) Integer minBudget){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getTeamMinBudget(minBudget));
     }
 
-    @GetMapping("/getTeam/{maxBudget}")//ritorno le squadre che hanno massimo un certo budget
-    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMax(@PathVariable Integer maxBudget){
-        return ResponseEntity.status(500).body(service.getTeamMaxBudget(maxBudget));
+    @GetMapping("/getTeamMax/{maxBudget}")//ritorno le squadre che hanno massimo un certo budget
+    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMax(@PathVariable @Min(message = "Error value min is 1.000", value = 1000)
+                                                                      @Max(message = "Error value max is 1.000.000.000" , value = 1000000000)Integer maxBudget){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getTeamMaxBudget(maxBudget));
     }
 
-    @GetMapping("/getTeam/position/{position}")//ritorno squadra tramite posto in classifica
-    public ResponseEntity<TeamResponse> getTeamForPosition(@PathVariable Integer position){
-        return ResponseEntity.status(500).body(service.getTeamForPosition(position));
+    @GetMapping("/getTeamPosition/{position}")//ritorno squadra tramite posto in classifica
+    public ResponseEntity<TeamResponse> getTeamForPosition(@PathVariable @Min(message = "Error value min is 1", value = 1)
+                                                               @Max(message = "Error value max id 20", value = 20)Integer position){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getTeamForPosition(position));
     }
 
-    @GetMapping("/getTeam/matchOutCome/{team}")//ritorno le statistiche esiti partite
-    public ResponseEntity<TeamStaticsResponse> getTeamMatchOutCome(String name){
-        return ResponseEntity.status(500).body(service.getStaticsTeam(name));
+    @GetMapping("/getTeamStatics/{name}")//ritorno le statistiche esiti partite
+    public ResponseEntity<TeamStaticsResponse> getTeamMatchOutCome(@PathVariable @NotBlank(message = "Error name not null") String name){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getStaticsTeam(name));
     }
 
 
