@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RepositoryTeam extends JpaRepository<TeamModel, Integer> {
+public interface TeamRepository extends JpaRepository<TeamModel, Integer> {
 
     Optional<TeamModel> findByNameContaining(String name);
 

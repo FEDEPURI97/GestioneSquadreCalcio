@@ -10,25 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
 @RequestMapping(value = "Squadra", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
-public class ControllerTeam {
+public class TeamController {
 
     @Autowired
     TeamService service;
 
     @ApiOperation(value = "Ritorna il mio nome", response = String.class)
     @ApiResponses(value = @ApiResponse(code = 200, message = "Success|OK"))
-    @PutMapping("/{name}/{OutCome}")//aggiorno l'esito della partita
-    public ResponseEntity<String> updateWinLoseDraw(String name , String outCome){
+    @PutMapping("/{name}/{outCome}")//aggiorno l'esito della partita
+    public ResponseEntity<String> updateWinLoseDraw(@PathVariable String name ,@PathVariable String outCome){
         service.updateTeam(name , outCome);
         return ResponseEntity.status(HttpStatus.OK).body("UpdateTeamSuccessFull");
     }
@@ -39,22 +36,22 @@ public class ControllerTeam {
     }
 
     @GetMapping("/getTeamName/{name}")//ritorno la squadra tramite il nome
-    public ResponseEntity<TeamResponse> getTeamForName(String name){
+    public ResponseEntity<TeamResponse> getTeamForName(@PathVariable String name){
         return ResponseEntity.status(500).body(service.getTeamForName(name));
     }
 
-    @GetMapping("/getTeam/minBudget/{budget}")//ritorno le squadre che hanno almeno un certo budget
-    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMin(Integer minBudget){
+    @GetMapping("/getTeam/{minBudget}")//ritorno le squadre che hanno almeno un certo budget
+    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMin(@PathVariable Integer minBudget){
         return ResponseEntity.status(500).body(service.getTeamMinBudget(minBudget));
     }
 
-    @GetMapping("/getTeam/maxBudget/{budget}")//ritorno le squadre che hanno massimo un certo budget
-    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMax(Integer maxBudget){
+    @GetMapping("/getTeam/{maxBudget}")//ritorno le squadre che hanno massimo un certo budget
+    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMax(@PathVariable Integer maxBudget){
         return ResponseEntity.status(500).body(service.getTeamMaxBudget(maxBudget));
     }
 
-    @GetMapping("/getTeam/position/{number}")//ritorno squadra tramite posto in classifica
-    public ResponseEntity<TeamResponse> getTeamForPosition(Integer position){
+    @GetMapping("/getTeam/position/{position}")//ritorno squadra tramite posto in classifica
+    public ResponseEntity<TeamResponse> getTeamForPosition(@PathVariable Integer position){
         return ResponseEntity.status(500).body(service.getTeamForPosition(position));
     }
 

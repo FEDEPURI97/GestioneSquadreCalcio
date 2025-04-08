@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RepositoryPlayer extends JpaRepository<PlayerModel, Integer> {
+public interface PlayerRepository extends JpaRepository<PlayerModel, Integer> {
 
     List<PlayerModel> findByTeam_Name(String nameTeam);
 

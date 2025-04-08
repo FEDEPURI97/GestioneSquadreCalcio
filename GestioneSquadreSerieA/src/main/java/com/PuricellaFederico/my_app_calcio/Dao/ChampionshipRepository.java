@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RepositoryChampionship extends JpaRepository<ChampionshipModel, Integer> {
+public interface ChampionshipRepository extends JpaRepository<ChampionshipModel, Integer> {
 
     Optional<ChampionshipModel> findByNameContaining(String championshipName);
 

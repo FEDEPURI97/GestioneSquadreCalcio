@@ -1,6 +1,6 @@
 package com.puricellafederico.my_app_calcio.service;
 
-import com.puricellafederico.my_app_calcio.Dao.RepositoryTeam;
+import com.puricellafederico.my_app_calcio.Dao.TeamRepository;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
 import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionSquadra;
 import com.puricellafederico.my_app_calcio.mapper.Mapper;
@@ -19,7 +19,7 @@ import java.util.List;
 public class TeamService {
 
     @Autowired
-    private RepositoryTeam dao;
+    private TeamRepository dao;
 
     @Autowired
     private Mapper mapper;

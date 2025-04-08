@@ -1,6 +1,6 @@
 package com.puricellafederico.my_app_calcio.service;
 
-import com.puricellafederico.my_app_calcio.Dao.RepositoryChampionship;
+import com.puricellafederico.my_app_calcio.Dao.ChampionshipRepository;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
@@ -24,7 +24,7 @@ public class ChampionshipService {
     private Mapper mapper;
 
     @Autowired
-    private RepositoryChampionship dao;
+    private ChampionshipRepository dao;
 
     @Transactional(readOnly = true)
     public ChampionshipInterfaceResponse getChampionship(Boolean team , String championshipName) {

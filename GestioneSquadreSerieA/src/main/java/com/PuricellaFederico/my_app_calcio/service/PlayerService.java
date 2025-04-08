@@ -1,6 +1,6 @@
 package com.puricellafederico.my_app_calcio.service;
 
-import com.puricellafederico.my_app_calcio.Dao.RepositoryPlayer;
+import com.puricellafederico.my_app_calcio.Dao.PlayerRepository;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerResponse;
 import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionGicoatore;
 import com.puricellafederico.my_app_calcio.mapper.Mapper;
@@ -16,7 +16,7 @@ import java.util.List;
 public class PlayerService {
 
     @Autowired
-    private RepositoryPlayer dao;
+    private PlayerRepository dao;
 
     @Autowired
     private Mapper mapper;
