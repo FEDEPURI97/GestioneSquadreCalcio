@@ -1,14 +1,14 @@
-package com.PuricellaFederico.my_app_calcio.service;
+package com.puricellafederico.my_app_calcio.service;
 
-import com.PuricellaFederico.my_app_calcio.Dao.RepositoryChampionship;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.Championship;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.TeamChampionship;
-import com.PuricellaFederico.my_app_calcio.eccezzionicontrollate.ExceptionTorneo;
-import com.PuricellaFederico.my_app_calcio.mapper.Mapper;
-import com.PuricellaFederico.my_app_calcio.model.ChampionshipModel;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;
-import com.PuricellaFederico.my_app_calcio.model.TeamModel;
+import com.puricellafederico.my_app_calcio.Dao.RepositoryChampionship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
+import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionTorneo;
+import com.puricellafederico.my_app_calcio.mapper.Mapper;
+import com.puricellafederico.my_app_calcio.model.ChampionshipModel;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;
+import com.puricellafederico.my_app_calcio.model.TeamModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

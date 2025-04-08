@@ -1,6 +1,6 @@
-package com.PuricellaFederico.my_app_calcio.response.teamResponse;
+package com.puricellafederico.my_app_calcio.response.teamResponse;
 
-import com.PuricellaFederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
+import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
 
 import java.util.List;
 

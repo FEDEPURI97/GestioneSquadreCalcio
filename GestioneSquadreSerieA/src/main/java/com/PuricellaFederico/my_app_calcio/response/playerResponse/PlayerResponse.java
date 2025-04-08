@@ -1,6 +1,6 @@
-package com.PuricellaFederico.my_app_calcio.response.playerResponse;
+package com.puricellafederico.my_app_calcio.response.playerResponse;
 
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.TeamChampionship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
 
 import java.util.Date;
 

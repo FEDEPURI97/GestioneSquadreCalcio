@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.PuricellaFederico.my-app-calcio' is invalid and this project uses 'com.PuricellaFederico.my_app_calcio' instead.
+* The original package name 'com.puricellafederico.my-app-calcio' is invalid and this project uses 'com.puricellafederico.my_app_calcio' instead.
 
 # Getting Started
 

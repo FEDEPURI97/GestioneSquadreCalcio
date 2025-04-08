@@ -1,10 +1,10 @@
-package com.PuricellaFederico.my_app_calcio.service;
+package com.puricellafederico.my_app_calcio.service;
 
-import com.PuricellaFederico.my_app_calcio.Dao.RepositoryPlayer;
-import com.PuricellaFederico.my_app_calcio.response.playerResponse.PlayerResponse;
-import com.PuricellaFederico.my_app_calcio.eccezzionicontrollate.ExceptionGicoatore;
-import com.PuricellaFederico.my_app_calcio.mapper.Mapper;
-import com.PuricellaFederico.my_app_calcio.model.PlayerModel;
+import com.puricellafederico.my_app_calcio.Dao.RepositoryPlayer;
+import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerResponse;
+import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionGicoatore;
+import com.puricellafederico.my_app_calcio.mapper.Mapper;
+import com.puricellafederico.my_app_calcio.model.PlayerModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

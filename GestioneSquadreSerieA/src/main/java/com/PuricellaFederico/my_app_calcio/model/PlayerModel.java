@@ -1,4 +1,4 @@
-package com.PuricellaFederico.my_app_calcio.model;
+package com.puricellafederico.my_app_calcio.model;
 
 import jakarta.persistence.*;
 

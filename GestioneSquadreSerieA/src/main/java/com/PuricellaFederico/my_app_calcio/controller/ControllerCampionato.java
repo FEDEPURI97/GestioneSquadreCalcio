@@ -1,8 +1,8 @@
-package com.PuricellaFederico.my_app_calcio.controller;
+package com.puricellafederico.my_app_calcio.controller;
 
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.Championship;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;
-import com.PuricellaFederico.my_app_calcio.service.ChampionshipService;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;
+import com.puricellafederico.my_app_calcio.service.ChampionshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

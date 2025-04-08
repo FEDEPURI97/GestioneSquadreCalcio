@@ -1,4 +1,4 @@
-package com.PuricellaFederico.my_app_calcio.eccezzionicontrollate;
+package com.puricellafederico.my_app_calcio.eccezzionicontrollate;
 
 public class ExceptionGicoatore extends RuntimeException {
 

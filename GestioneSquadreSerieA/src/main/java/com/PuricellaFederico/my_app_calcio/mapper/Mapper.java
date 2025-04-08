@@ -1,14 +1,14 @@
-package com.PuricellaFederico.my_app_calcio.mapper;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.Championship;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
-import com.PuricellaFederico.my_app_calcio.response.championshipResponse.TeamChampionship;
-import com.PuricellaFederico.my_app_calcio.response.playerResponse.PlayerResponse;
-import com.PuricellaFederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
-import com.PuricellaFederico.my_app_calcio.model.ChampionshipModel;
-import com.PuricellaFederico.my_app_calcio.model.PlayerModel;
-import com.PuricellaFederico.my_app_calcio.model.TeamModel;
-import com.PuricellaFederico.my_app_calcio.response.teamResponse.TeamResponse;
-import com.PuricellaFederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
+package com.puricellafederico.my_app_calcio.mapper;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
+import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerResponse;
+import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
+import com.puricellafederico.my_app_calcio.model.ChampionshipModel;
+import com.puricellafederico.my_app_calcio.model.PlayerModel;
+import com.puricellafederico.my_app_calcio.model.TeamModel;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
 
 
 @org.mapstruct.Mapper(componentModel = "spring")

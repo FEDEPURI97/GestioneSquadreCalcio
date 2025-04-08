@@ -1,6 +1,6 @@
-package com.PuricellaFederico.my_app_calcio.Dao;
+package com.puricellafederico.my_app_calcio.Dao;
 
-import com.PuricellaFederico.my_app_calcio.model.PlayerModel;
+import com.puricellafederico.my_app_calcio.model.PlayerModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.PuricellaFederico.my_app_calcio.response.playerResponse;
+package com.puricellafederico.my_app_calcio.response.playerResponse;
 
 public class PlayerForTeamResponse {
 

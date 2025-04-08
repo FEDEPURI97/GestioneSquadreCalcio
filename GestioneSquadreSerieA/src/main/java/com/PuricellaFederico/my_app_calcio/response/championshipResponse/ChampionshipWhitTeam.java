@@ -1,4 +1,4 @@
-package com.PuricellaFederico.my_app_calcio.response.championshipResponse;
+package com.puricellafederico.my_app_calcio.response.championshipResponse;
 
 
 import java.util.List;

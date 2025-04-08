@@ -1,13 +1,13 @@
-package com.PuricellaFederico.my_app_calcio.service;
+package com.puricellafederico.my_app_calcio.service;
 
-import com.PuricellaFederico.my_app_calcio.Dao.RepositoryTeam;
-import com.PuricellaFederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
-import com.PuricellaFederico.my_app_calcio.eccezzionicontrollate.ExceptionSquadra;
-import com.PuricellaFederico.my_app_calcio.mapper.Mapper;
-import com.PuricellaFederico.my_app_calcio.model.PlayerModel;
-import com.PuricellaFederico.my_app_calcio.model.TeamModel;
-import com.PuricellaFederico.my_app_calcio.response.teamResponse.TeamResponse;
-import com.PuricellaFederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
+import com.puricellafederico.my_app_calcio.Dao.RepositoryTeam;
+import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
+import com.puricellafederico.my_app_calcio.eccezzionicontrollate.ExceptionSquadra;
+import com.puricellafederico.my_app_calcio.mapper.Mapper;
+import com.puricellafederico.my_app_calcio.model.PlayerModel;
+import com.puricellafederico.my_app_calcio.model.TeamModel;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

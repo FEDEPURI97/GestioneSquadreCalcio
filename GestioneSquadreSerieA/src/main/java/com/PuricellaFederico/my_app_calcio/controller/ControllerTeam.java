@@ -1,8 +1,8 @@
-package com.PuricellaFederico.my_app_calcio.controller;
+package com.puricellafederico.my_app_calcio.controller;
 
-import com.PuricellaFederico.my_app_calcio.response.teamResponse.TeamResponse;
-import com.PuricellaFederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
-import com.PuricellaFederico.my_app_calcio.service.TeamService;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
+import com.puricellafederico.my_app_calcio.service.TeamService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
