@@ -40,11 +40,11 @@ public class ChampionshipModel {
         this.id = id;
     }
 
-    public String getNameChampionship() {
+    public String getName() {
         return name;
     }
 
-    public void setNameChampionship(String nameChampionship) {
+    public void setName(String nameChampionship) {
         this.name = nameChampionship;
     }
 

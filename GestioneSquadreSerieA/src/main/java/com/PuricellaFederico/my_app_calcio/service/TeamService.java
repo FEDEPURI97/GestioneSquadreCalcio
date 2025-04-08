@@ -62,7 +62,7 @@ public class TeamService {
             TeamStaticsResponse response = mapper.toTeamStaticsResponse(teamModel);
             listTeam.add(response);
         }
-        String name = teamOrderPosition(listTeam).get(position).getName();
+        String name = teamOrderPosition(listTeam).get(position-1).getName();
         return checkTeamName(name , modelList);
     }
 

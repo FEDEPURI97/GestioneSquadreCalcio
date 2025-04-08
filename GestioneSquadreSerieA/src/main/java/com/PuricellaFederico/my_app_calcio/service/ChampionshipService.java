@@ -46,6 +46,7 @@ public class ChampionshipService {
     public List<Championship> getAll() {
         List<Championship> modelList = new ArrayList<>();
         for (ChampionshipModel model : dao.findAll()) {
+            System.out.println(model.getName());
             modelList.add(mapper.toChampionship(model));
         }
         return modelList;

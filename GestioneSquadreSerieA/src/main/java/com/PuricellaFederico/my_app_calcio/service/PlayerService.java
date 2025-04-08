@@ -45,7 +45,8 @@ public class PlayerService {
     public PlayerResponse getPlayerForName(String name , String surname) {
         PlayerModel model = dao.findByNameAndSurname(name , surname).
                 orElseThrow(() -> new ExceptionGicoatore("Gicoatore non trovato : " , name , surname));
-        return mapper.toPlayerResponse(model);
+//        return getPlayerResponses(mapper.toPlayerResponse(model));
+          return mapper.toPlayerResponse(model);
     }
 
     private List<PlayerResponse> getPlayerResponses(List<PlayerModel> list) {
