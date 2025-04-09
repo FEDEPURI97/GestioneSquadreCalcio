@@ -28,11 +28,11 @@ public class CampionshipController {
 
     @Operation(
             summary = "Get Championship by team and championship name",
-            description = "Fetches the championship details based on the team and the championship name.(TESTED)",
+            description = "Prendo il torneo tramite il nome e ritorno le squadre tramite true o false.",
             responses = {
                     @ApiResponse(
                             responseCode = "200",
-                            description = "Successfully fetched the championship details",
+                            description = "Successfully",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
                     )
             }
@@ -49,13 +49,14 @@ public class CampionshipController {
         return ResponseEntity.status(HttpStatus.OK).body(campionShip);
     }
 
+
     @Operation(
             summary = "Get all championships",
-            description = "Fetches a list of all available championships.(TESTED)",
+            description = "Ritorno la lista di tutti i tornei",
             responses = {
                     @ApiResponse(
                             responseCode = "200",
-                            description = "Successfully fetched the list of championships",
+                            description = "Successfully",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = Championship.class))
                     )
             }

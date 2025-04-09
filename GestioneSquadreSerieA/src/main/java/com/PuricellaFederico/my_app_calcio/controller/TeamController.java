@@ -1,8 +1,15 @@
 package com.puricellafederico.my_app_calcio.controller;
 
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamPlayerResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponseInterface;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
 import com.puricellafederico.my_app_calcio.service.TeamService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -23,8 +30,19 @@ import java.util.List;
 public class TeamController {
 
     @Autowired
-    TeamService service;
+    private TeamService service;
 
+    @Operation(
+            summary = "Update team by outcome and name",
+            description = "Aggiorno l'esito partita squadra tramite l'esito e tramite il nome squadra",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                    )
+            }
+    )
     @PutMapping("/updateMatch/{name}/{outCome}")
     public ResponseEntity<String> updateWinLoseDraw(@PathVariable @NotBlank(message = "Error name not null") String name ,
                                                     @PathVariable  @Pattern(regexp = "(win|lose|draw|WIN|LOSE|DRA)",
@@ -33,35 +51,107 @@ public class TeamController {
         return ResponseEntity.status(HttpStatus.OK).body("UpdateTeamSuccessFull");
     }
 
+
+    @Operation(
+            summary = "Get all Team",
+            description = "Ritorno la lista di tutte le squadre",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                    )
+            }
+    )
     @GetMapping("/")// ritorno tutte le squadre del campionato
     public ResponseEntity<List<TeamResponse>> getListTeam(){
         return ResponseEntity.status(HttpStatus.OK).body(service.getAllTeam());
     }
 
-    @GetMapping("/getTeamName/{name}")//ritorno la squadra tramite il nome
-    public ResponseEntity<TeamResponse> getTeamForName(@PathVariable @NotBlank(message = "Error name not null") String name){
+
+    @Operation(
+            summary = "Get team by name",
+            description = "Prendo la squadra tramite il nome",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                    )
+            }
+    )
+    @GetMapping("/getTeamName/{name}")
+    public ResponseEntity<TeamPlayerResponse> getTeamForName(@PathVariable @NotBlank(message = "Error name not null") String name){
         return ResponseEntity.status(HttpStatus.OK).body(service.getTeamForName(name));
     }
 
-    @GetMapping("/getTeamMin/{minBudget}")//ritorno le squadre che hanno almeno un certo budget
+
+    @Operation(
+            summary = "Get all team by minimum budget in milion",
+            description = "Prendo le squadre che hanno minimo un certo budget in milioni",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                    )
+            }
+    )
+    @GetMapping("/getTeamMin/{minBudget}")
     public ResponseEntity<List<TeamResponse>> getTeamForBudgetMin(@PathVariable @Min(message = "Error value min is 0", value = 0)
-                                                                      @Max(message = "Error value max is 1.000.000.000" , value = 1000000000) Integer minBudget){
+                                                                      @Max(message = "Error value max is 1.000.000.000" , value = 1000) Integer minBudget){
         return ResponseEntity.status(HttpStatus.OK).body(service.getTeamMinBudget(minBudget));
     }
 
-    @GetMapping("/getTeamMax/{maxBudget}")//ritorno le squadre che hanno massimo un certo budget
-    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMax(@PathVariable @Min(message = "Error value min is 1.000", value = 1000)
-                                                                      @Max(message = "Error value max is 1.000.000.000" , value = 1000000000)Integer maxBudget){
+
+    @Operation(
+            summary = "Get all team by maximum budget in million",
+            description = "Prendo le squadre che hanno massimo un certo budget in milioni",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                    )
+            }
+    )
+    @GetMapping("/getTeamMax/{maxBudget}")
+    public ResponseEntity<List<TeamResponse>> getTeamForBudgetMax(@PathVariable @Min(message = "Error value min is 1", value = 1)
+                                                                      @Max(message = "Error value max is 1.000" , value = 1000)Integer maxBudget){
         return ResponseEntity.status(HttpStatus.OK).body(service.getTeamMaxBudget(maxBudget));
     }
 
-    @GetMapping("/getTeamPosition/{position}")//ritorno squadra tramite posto in classifica
+
+    @Operation(
+            summary = "Get team by place in the ranking",
+            description = "Prendo la squadra tramite il posto in classifica",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                    )
+            }
+    )
+    @GetMapping("/getTeamPosition/{position}")
     public ResponseEntity<TeamResponse> getTeamForPosition(@PathVariable @Min(message = "Error value min is 1", value = 1)
                                                                @Max(message = "Error value max id 20", value = 20)Integer position){
         return ResponseEntity.status(HttpStatus.OK).body(service.getTeamForPosition(position));
     }
 
-    @GetMapping("/getTeamStatics/{name}")//ritorno le statistiche esiti partite
+
+    @Operation(
+            summary = "Get statics team by name",
+            description = "Prendo la squadra tramite con le statistiche di degli esiti e il punteggio in campionato",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                    )
+            }
+    )
+    @GetMapping("/getTeamStatics/{name}")
     public ResponseEntity<TeamStaticsResponse> getTeamMatchOutCome(@PathVariable @NotBlank(message = "Error name not null") String name){
         return ResponseEntity.status(HttpStatus.OK).body(service.getStaticsTeam(name));
     }

@@ -10,13 +10,13 @@ import java.util.Optional;
 @Repository
 public interface PlayerRepository extends JpaRepository<PlayerModel, Integer> {
 
-    List<PlayerModel> findByTeam_Name(String nameTeam);
+    List<PlayerModel> findByTeam_NameIgnoreCase(String nameTeam);
 
-    List<PlayerModel> findByRole(String role);
+    List<PlayerModel> findByRoleIgnoreCase(String role);
 
-    List<PlayerModel> findBySalaryGreaterThanEqual(Integer minPay);
+    List<PlayerModel> findBySalaryLessThanEqual(Integer minPay);
 
-    List<PlayerModel> findBySalaryLessThanEqual(Integer maxPay);
+    List<PlayerModel> findBySalaryGreaterThanEqual(Integer maxPay);
 
-    Optional<PlayerModel> findByNameAndSurname(String name, String surname);
+    Optional<PlayerModel> findByNameAndSurnameIgnoreCase(String name, String surname);
 }

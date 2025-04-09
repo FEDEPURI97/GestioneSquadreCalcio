@@ -23,39 +23,45 @@ public class PlayerService {
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForTeam(String nameTeam) {
-        return getPlayerResponses(dao.findByTeam_Name(nameTeam));
+        return getPlayerListResponses(dao.findByTeam_NameIgnoreCase(nameTeam));
     }
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForRole(String role) {
-        return getPlayerResponses(dao.findByRole(role));
+        return getPlayerListResponses(dao.findByRoleIgnoreCase(role));
     }
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForMinPay(Integer minPay) {
-        return getPlayerResponses(dao.findBySalaryLessThanEqual(minPay));
+        return getPlayerListResponses(dao.findBySalaryGreaterThanEqual(minPay));
     }
 
     @Transactional(readOnly = true)
     public List<PlayerResponse> getPlayerForMaxPay(Integer maxPay) {
-        return getPlayerResponses(dao.findBySalaryGreaterThanEqual(maxPay));
+        return getPlayerListResponses(dao.findBySalaryLessThanEqual(maxPay));
     }
 
     @Transactional(readOnly = true)
     public PlayerResponse getPlayerForName(String name , String surname) {
-        PlayerModel model = dao.findByNameAndSurname(name , surname).
+        PlayerModel model = dao.findByNameAndSurnameIgnoreCase(name , surname).
                 orElseThrow(() -> new ExceptionGicoatore("Gicoatore non trovato : " , name , surname));
-//        return getPlayerResponses(mapper.toPlayerResponse(model));
-          return mapper.toPlayerResponse(model);
+          return getPlayerResponse(model);
     }
 
-    private List<PlayerResponse> getPlayerResponses(List<PlayerModel> list) {
+    @Transactional(readOnly = true)
+    private List<PlayerResponse> getPlayerListResponses(List<PlayerModel> list) {
         List<PlayerResponse> responseList = new ArrayList<>();
         for (PlayerModel playerModel : list) {
-            PlayerResponse response = mapper.toPlayerResponse(playerModel);
-            response.setTeamChampionship(mapper.toTeamName(playerModel.getTeam()));
+            PlayerResponse response = getPlayerResponse(playerModel);
             responseList.add(response);
         }
         return responseList;
+    }
+
+    @Transactional(readOnly = true)
+    private PlayerResponse getPlayerResponse(PlayerModel playerModel) {
+        PlayerResponse response = mapper.toPlayerResponse(playerModel);
+        response.setTeamChampionship(mapper.toTeamName(playerModel.getTeam()));
+        return response;
     }
 }

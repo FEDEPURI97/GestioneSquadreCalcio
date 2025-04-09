@@ -28,7 +28,7 @@ public class ChampionshipService {
 
     @Transactional(readOnly = true)
     public ChampionshipInterfaceResponse getChampionship(Boolean team , String championshipName) {
-        Optional<ChampionshipModel> modelOptional = dao.findByNameContaining(championshipName);
+        Optional<ChampionshipModel> modelOptional = dao.findByNameContainingIgnoreCase(championshipName);
         ChampionshipModel model = modelOptional.orElseThrow(() -> new ExceptionTorneo("Torneo non trovato" , championshipName));
         if (team){
             ChampionshipWhitTeam response = mapper.toChampionshipWhitTeam(model);
@@ -46,7 +46,6 @@ public class ChampionshipService {
     public List<Championship> getAll() {
         List<Championship> modelList = new ArrayList<>();
         for (ChampionshipModel model : dao.findAll()) {
-            System.out.println(model.getName());
             modelList.add(mapper.toChampionship(model));
         }
         return modelList;

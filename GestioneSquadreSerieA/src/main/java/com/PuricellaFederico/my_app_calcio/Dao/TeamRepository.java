@@ -10,9 +10,9 @@ import java.util.Optional;
 @Repository
 public interface TeamRepository extends JpaRepository<TeamModel, Integer> {
 
-    Optional<TeamModel> findByNameContaining(String name);
+    Optional<TeamModel> findByNameContainingIgnoreCase(String name);
 
-    Optional<List<TeamModel>> findByBudgetYearGreaterThanEqual(Integer minBudget);
+    Optional<List<TeamModel>> findByBudgetYearLessThanEqual(Integer minBudget);
 
-    Optional<List<TeamModel>> findByBudgetYearLessThanEqual(Integer maxBudget);
+    Optional<List<TeamModel>> findByBudgetYearGreaterThanEqual(Integer maxBudget);
 }

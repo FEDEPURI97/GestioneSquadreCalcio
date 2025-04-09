@@ -7,6 +7,7 @@ import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeam
 import com.puricellafederico.my_app_calcio.model.ChampionshipModel;
 import com.puricellafederico.my_app_calcio.model.PlayerModel;
 import com.puricellafederico.my_app_calcio.model.TeamModel;
+import com.puricellafederico.my_app_calcio.response.teamResponse.TeamPlayerResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
 
@@ -23,6 +24,8 @@ public interface Mapper {
     PlayerResponse toPlayerResponse(PlayerModel playerModel);
 
     TeamResponse toTeamResponse(TeamModel teamModel);
+
+    TeamPlayerResponse toTeamPlayerResponse(TeamModel teamModel);
 
     PlayerForTeamResponse toPlayerForTeamResponse(PlayerModel model);
 
