@@ -1,12 +1,16 @@
 package com.puricellafederico.my_app_calcio.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity(name = "squadre")
+@Getter
+@Setter
 public class TeamModel {
 
     @Id
@@ -42,76 +46,4 @@ public class TeamModel {
             inverseJoinColumns = {@JoinColumn(name = "id_campionato")}
     )
     private List<ChampionshipModel> championshipModel;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getNumberPlayer() {
-        return numberPlayer;
-    }
-
-    public void setNumberPlayer(Integer numberPlayer) {
-        this.numberPlayer = numberPlayer;
-    }
-
-    public Integer getBudgetYear() {
-        return budgetYear;
-    }
-
-    public void setBudgetYear(Integer budgetYear) {
-        this.budgetYear = budgetYear;
-    }
-
-    public Integer getWin() {
-        return win;
-    }
-
-    public void setWin(Integer win) {
-        this.win = win;
-    }
-
-    public Integer getLose() {
-        return lose;
-    }
-
-    public void setLose(Integer lose) {
-        this.lose = lose;
-    }
-
-    public Integer getDraw() {
-        return draw;
-    }
-
-    public void setDraw(Integer draw) {
-        this.draw = draw;
-    }
-
-    public List<PlayerModel> getPlayerModel() {
-        return playerModel;
-    }
-
-    public void setPlayerModel(List<PlayerModel> playerModel) {
-        this.playerModel = playerModel;
-    }
-
-    public List<ChampionshipModel> getChampionshipModel() {
-        return championshipModel;
-    }
-
-    public void setChampionshipModel(List<ChampionshipModel> championshipModel) {
-        this.championshipModel = championshipModel;
-    }
 }

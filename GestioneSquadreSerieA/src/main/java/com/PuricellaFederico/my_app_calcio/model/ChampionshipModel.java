@@ -1,12 +1,16 @@
 package com.puricellafederico.my_app_calcio.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity(name = "campionato")
+@Getter
+@Setter
 public class ChampionshipModel {
 
     @Id
@@ -32,59 +36,4 @@ public class ChampionshipModel {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "championshipModel")
     private List<TeamModel> teams;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String nameChampionship) {
-        this.name = nameChampionship;
-    }
-
-    public Integer getFirstPrize() {
-        return firstPrize;
-    }
-
-    public void setFirstPrize(Integer firstPrize) {
-        this.firstPrize = firstPrize;
-    }
-
-    public Integer getSecondPrice() {
-        return secondPrice;
-    }
-
-    public void setSecondPrice(Integer secondPrice) {
-        this.secondPrice = secondPrice;
-    }
-
-    public Integer getThirdPrize() {
-        return thirdPrize;
-    }
-
-    public void setThirdPrize(Integer thirdPrize) {
-        this.thirdPrize = thirdPrize;
-    }
-
-    public String getPartecipationPrize() {
-        return partecipationPrize;
-    }
-
-    public void setPartecipationPrize(String partecipationPrize) {
-        this.partecipationPrize = partecipationPrize;
-    }
-
-    public List<TeamModel> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(List<TeamModel> teams) {
-        this.teams = teams;
-    }
 }
