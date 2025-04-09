@@ -25,7 +25,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "Squadra", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
+@RequestMapping(value = "Team", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
 @Validated
 public class TeamController {
 
@@ -39,7 +39,7 @@ public class TeamController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
                     )
             }
     )
@@ -59,7 +59,7 @@ public class TeamController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = TeamResponse.class))
                     )
             }
     )
@@ -76,7 +76,7 @@ public class TeamController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = TeamPlayerResponse.class))
                     )
             }
     )
@@ -93,7 +93,7 @@ public class TeamController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = TeamResponse.class))
                     )
             }
     )
@@ -111,7 +111,7 @@ public class TeamController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = TeamResponse.class))
                     )
             }
     )
@@ -129,7 +129,7 @@ public class TeamController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = TeamResponse.class))
                     )
             }
     )
@@ -147,7 +147,7 @@ public class TeamController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = TeamStaticsResponse.class))
                     )
             }
     )

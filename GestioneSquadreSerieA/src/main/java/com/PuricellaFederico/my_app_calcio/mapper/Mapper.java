@@ -1,7 +1,7 @@
 package com.puricellafederico.my_app_calcio.mapper;
-import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
-import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
-import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipResponse;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeamResponse;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionshipResponse;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerResponse;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
 import com.puricellafederico.my_app_calcio.model.ChampionshipModel;
@@ -15,11 +15,11 @@ import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResp
 @org.mapstruct.Mapper(componentModel = "spring")
 public interface Mapper {
 
-    Championship toChampionship(ChampionshipModel model);
+    ChampionshipResponse toChampionship(ChampionshipModel model);
 
-    ChampionshipWhitTeam toChampionshipWhitTeam(ChampionshipModel model);
+    ChampionshipWhitTeamResponse toChampionshipWhitTeam(ChampionshipModel model);
 
-    TeamChampionship toTeamName(TeamModel model);
+    TeamChampionshipResponse toTeamName(TeamModel model);
 
     PlayerResponse toPlayerResponse(PlayerModel playerModel);
 

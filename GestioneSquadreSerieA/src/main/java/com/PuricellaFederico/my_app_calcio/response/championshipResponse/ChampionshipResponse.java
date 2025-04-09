@@ -1,6 +1,6 @@
 package com.puricellafederico.my_app_calcio.response.championshipResponse;
 
-public class Championship implements ChampionshipInterfaceResponse{
+public class ChampionshipResponse implements ChampionshipInterfaceResponse{
 
     private String name;
 

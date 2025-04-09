@@ -1,7 +1,8 @@
 package com.puricellafederico.my_app_calcio.controller;
 
-import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipResponse;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeamResponse;
 import com.puricellafederico.my_app_calcio.service.ChampionshipService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "Campionato", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
+@RequestMapping(value = "Championship", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
 @Validated
 public class CampionshipController {
 
@@ -33,7 +34,7 @@ public class CampionshipController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipWhitTeamResponse.class))
                     )
             }
     )
@@ -57,12 +58,12 @@ public class CampionshipController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Championship.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipResponse.class))
                     )
             }
     )
     @GetMapping("/")
-    public ResponseEntity<List<Championship>> getAllChampion() {
+    public ResponseEntity<List<ChampionshipResponse>> getAllChampion() {
         return ResponseEntity.status(HttpStatus.OK).body(service.getAll());
     }
 }

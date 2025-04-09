@@ -1,6 +1,6 @@
 package com.puricellafederico.my_app_calcio.response.playerResponse;
 
-import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionshipResponse;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ public class PlayerResponse {
 
     private String role;
 
-    private TeamChampionship teamChampionship;
+    private TeamChampionshipResponse teamChampionship;
 
     private Integer salary;
 
@@ -44,11 +44,11 @@ public class PlayerResponse {
         this.surname = surname;
     }
 
-    public TeamChampionship getTeamChampionship() {
+    public TeamChampionshipResponse getTeamChampionship() {
         return teamChampionship;
     }
 
-    public void setTeamChampionship(TeamChampionship teamChampionship) {
+    public void setTeamChampionship(TeamChampionshipResponse teamChampionship) {
         this.teamChampionship = teamChampionship;
     }
 

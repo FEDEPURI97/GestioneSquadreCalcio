@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "Giocatore", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
+@RequestMapping(value = "Player", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
 @Validated
 public class PlayerController {
 
@@ -38,7 +38,7 @@ public class PlayerController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PlayerResponse.class))
                     )
             }
     )
@@ -55,7 +55,7 @@ public class PlayerController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PlayerResponse.class))
                     )
             }
     )
@@ -73,7 +73,7 @@ public class PlayerController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PlayerResponse.class))
                     )
             }
     )
@@ -91,7 +91,7 @@ public class PlayerController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PlayerResponse.class))
                     )
             }
     )
@@ -109,7 +109,7 @@ public class PlayerController {
                     @ApiResponse(
                             responseCode = "200",
                             description = "Successfully",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ChampionshipInterfaceResponse.class))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PlayerResponse.class))
                     )
             }
     )

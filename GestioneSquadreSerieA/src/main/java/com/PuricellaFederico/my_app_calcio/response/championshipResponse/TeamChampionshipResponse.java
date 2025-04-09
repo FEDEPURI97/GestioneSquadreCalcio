@@ -1,6 +1,6 @@
 package com.puricellafederico.my_app_calcio.response.championshipResponse;
 
-public class TeamChampionship {
+public class TeamChampionshipResponse {
 
     private String name;
 

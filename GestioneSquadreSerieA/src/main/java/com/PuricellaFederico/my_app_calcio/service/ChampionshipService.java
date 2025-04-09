@@ -1,9 +1,9 @@
 package com.puricellafederico.my_app_calcio.service;
 
 import com.puricellafederico.my_app_calcio.Dao.ChampionshipRepository;
-import com.puricellafederico.my_app_calcio.response.championshipResponse.Championship;
-import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeam;
-import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionship;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipResponse;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeamResponse;
+import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionshipResponse;
 import com.puricellafederico.my_app_calcio.customException.ExceptionTorneo;
 import com.puricellafederico.my_app_calcio.mapper.Mapper;
 import com.puricellafederico.my_app_calcio.model.ChampionshipModel;
@@ -31,8 +31,8 @@ public class ChampionshipService {
         Optional<ChampionshipModel> modelOptional = dao.findByNameContainingIgnoreCase(championshipName);
         ChampionshipModel model = modelOptional.orElseThrow(() -> new ExceptionTorneo("Torneo non trovato" , championshipName));
         if (team){
-            ChampionshipWhitTeam response = mapper.toChampionshipWhitTeam(model);
-            List<TeamChampionship> teams = new ArrayList<>();
+            ChampionshipWhitTeamResponse response = mapper.toChampionshipWhitTeam(model);
+            List<TeamChampionshipResponse> teams = new ArrayList<>();
             for(TeamModel teamModel : model.getTeams()){
                 teams.add(mapper.toTeamName(teamModel));
             }
@@ -43,8 +43,8 @@ public class ChampionshipService {
     }
 
     @Transactional(readOnly = true)
-    public List<Championship> getAll() {
-        List<Championship> modelList = new ArrayList<>();
+    public List<ChampionshipResponse> getAll() {
+        List<ChampionshipResponse> modelList = new ArrayList<>();
         for (ChampionshipModel model : dao.findAll()) {
             modelList.add(mapper.toChampionship(model));
         }
