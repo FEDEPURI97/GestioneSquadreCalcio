@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "Championship", produces = {MediaType.APPLICATION_JSON_VALUE, "application/json"})
 @Validated
-public class CampionshipController {
+public class ChampionshipController {
 
     @Autowired
     ChampionshipService service;
