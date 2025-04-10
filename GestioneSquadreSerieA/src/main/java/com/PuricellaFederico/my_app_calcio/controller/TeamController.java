@@ -15,12 +15,15 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -155,6 +158,18 @@ public class TeamController {
     public ResponseEntity<TeamStaticsResponse> getTeamMatchOutCome(@PathVariable @NotBlank(message = "Error name not null") String name){
         return ResponseEntity.status(HttpStatus.OK).body(service.getStaticsTeam(name));
     }
+
+    @GetMapping("/getDiagramTeam/{name}")
+    public ResponseEntity<InputStreamResource> getTeamDiagram(@PathVariable @NotBlank(message = "Error name not null") String name){
+
+        InputStream inputStream = service.getTeamDiagram(name);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=team_diagram.puml")
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(new InputStreamResource(inputStream));
+    }
+
 
 
 

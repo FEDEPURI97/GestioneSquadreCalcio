@@ -1,18 +1,24 @@
 package com.puricellafederico.my_app_calcio.service;
 
 import com.puricellafederico.my_app_calcio.Dao.TeamRepository;
+import com.puricellafederico.my_app_calcio.factory.VelocityFactory;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
 import com.puricellafederico.my_app_calcio.customException.ExceptionSquadra;
-import com.puricellafederico.my_app_calcio.mapper.Mapper;
+import com.puricellafederico.my_app_calcio.factory.Mapper;
 import com.puricellafederico.my_app_calcio.model.PlayerModel;
 import com.puricellafederico.my_app_calcio.model.TeamModel;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamPlayerResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
+import jakarta.validation.constraints.NotBlank;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -25,6 +31,15 @@ public class TeamService {
 
     @Autowired
     private Mapper mapper;
+
+    @Autowired
+    private Template template;
+
+    @Autowired
+    private VelocityFactory velocityFactory;
+
+    @Autowired
+    private VelocityEngine velocityEngine;
 
     @Transactional
     public void updateTeam(String name, String outCome) {
@@ -74,6 +89,24 @@ public class TeamService {
         }
         String name = teamOrderPosition(listTeam).get(position-1).getName();
         return checkTeamName(name , modelList);
+    }
+
+    @Transactional(readOnly = true)
+    public InputStream getTeamDiagram(@NotBlank(message = "Error name not null") String name) {
+        TeamModel model = dao.findByNameContainingIgnoreCase(name).
+                orElseThrow(() -> new ExceptionSquadra("Squadra nome non trovato"));
+        VelocityContext context = velocityFactory.getContext(model);
+        Writer writer = new StringWriter();
+        template.merge(context , writer);
+        try {
+            File tempFile = File.createTempFile("team-diagram-", ".puml");
+            try (FileWriter fileWriter = new FileWriter(tempFile)) {
+                fileWriter.write(writer.toString());
+            }
+            return new FileInputStream(tempFile);
+        } catch (IOException e) {
+            throw new RuntimeException("Errore nella generazione del diagramma", e);
+        }
     }
 
 

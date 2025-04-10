@@ -1,4 +1,4 @@
-package com.puricellafederico.my_app_calcio.mapper;
+package com.puricellafederico.my_app_calcio.factory;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipResponse;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeamResponse;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.TeamChampionshipResponse;
@@ -10,7 +10,6 @@ import com.puricellafederico.my_app_calcio.model.TeamModel;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamPlayerResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
-import org.mapstruct.factory.Mappers;
 
 
 @org.mapstruct.Mapper(componentModel = "spring")
