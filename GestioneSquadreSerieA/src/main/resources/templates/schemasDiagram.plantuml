@@ -1,25 +1,22 @@
 @startuml
 
 !include <C4/C4_Container>
+!include <cloudinsight/kafka>
 
 SHOW_PERSON_PORTRAIT()
 
 title Football Team Diagram - $Team.name
 
-' Team container
-Container($Team.name, "$Team.name", "Punti: $Team.point", "Budget: $BudgetTeam")
+Container($Team.id,"$Team.name","Punti:$Team.point","Budget:$BudgetTeam")
 
-' Giocatori
 #foreach($player in $Players)
-    Person($player.name, "$player.name", "Maglia: $player.numberShirt")
-    Rel($Team.name, $player.name, "play")
+    Person($player.id,"$player.name","Maglia:$player.numberShirt")
+    Rel($player.id,$Team.id,"play")
 #end
 
-' Campionati
 #foreach($champ in $Championship)
-    ' Usare nome senza spazi per l'identificatore
-    System_Ext($champ.name, "$champ.name", "Campionato")
-    Rel($Team.name, $champ.name, "Championship appartenent")
+    System_Ext($champ.id,"$champ.name","Campionato")
+    Rel($champ.id,$Team.id,"Championship appartenent")
 #end
 
 @enduml
