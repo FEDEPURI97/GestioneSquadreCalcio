@@ -4,11 +4,12 @@ import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Properties;
 
 @Configuration
-public class VelocityConfig {
+public class Configurations {
 
     @Bean
     public VelocityEngine velocityEngine() {
@@ -23,6 +24,11 @@ public class VelocityConfig {
     @Bean
     public Template teamTemplate(VelocityEngine velocityEngine) {
         return velocityEngine.getTemplate("templates/schemasDiagram.plantuml");
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
 }

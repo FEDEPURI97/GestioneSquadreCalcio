@@ -159,6 +159,18 @@ public class TeamController {
         return ResponseEntity.status(HttpStatus.OK).body(service.getStaticsTeam(name));
     }
 
+
+    @Operation(
+            summary = "Get diagram team by name",
+            description = "Ricavo il diagramma della squadra tramite il nome",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = TeamStaticsResponse.class))
+                    )
+            }
+    )
     @GetMapping("/getDiagramTeam/{name}")
     public ResponseEntity<InputStreamResource> getTeamDiagram(@PathVariable @NotBlank(message = "Error name not null") String name){
 
@@ -170,6 +182,11 @@ public class TeamController {
                 .body(new InputStreamResource(inputStream));
     }
 
+    @GetMapping("/getTeamPricePlayerPredict/{nameTeam}/{namePlayerBuy}")
+    public ResponseEntity<String> getTeamMatchOutCome(@PathVariable @NotBlank(message = "Error name not null") String nameTeam ,
+                                                      @PathVariable @NotBlank(message = "Error name not null") String namePlayerBuy){
+        return ResponseEntity.status(HttpStatus.OK).body(service.getPredictPlayer(nameTeam , namePlayerBuy));
+    }
 
 
 

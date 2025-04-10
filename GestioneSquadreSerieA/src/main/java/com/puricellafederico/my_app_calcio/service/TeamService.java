@@ -2,6 +2,7 @@ package com.puricellafederico.my_app_calcio.service;
 
 import com.puricellafederico.my_app_calcio.Dao.TeamRepository;
 import com.puricellafederico.my_app_calcio.factory.VelocityFactory;
+import com.puricellafederico.my_app_calcio.model.RichiestaPythonChiamata;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
 import com.puricellafederico.my_app_calcio.customException.ExceptionSquadra;
 import com.puricellafederico.my_app_calcio.factory.Mapper;
@@ -15,10 +16,17 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.*;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -40,6 +48,9 @@ public class TeamService {
 
     @Autowired
     private VelocityEngine velocityEngine;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Transactional
     public void updateTeam(String name, String outCome) {
@@ -153,5 +164,16 @@ public class TeamService {
             responsePlayer.add(mapper.toPlayerForTeamResponse(model));
         }
         return responsePlayer;
+    }
+
+    public String getPredictPlayer(@NotBlank(message = "Error name not null") String nameTeam, @NotBlank(message = "Error name not null") String namePlayerBuy) {
+        String url = "http://localhost:5000/api/saluta";
+        URI uri = UriComponentsBuilder.fromUriString(url)
+                .queryParam("nome", "Mario")
+                .build()
+                .encode()
+                .toUri();
+        ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+        return null;
     }
 }
