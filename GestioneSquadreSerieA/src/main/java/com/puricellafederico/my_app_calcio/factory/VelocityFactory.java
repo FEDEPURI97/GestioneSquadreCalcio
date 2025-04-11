@@ -28,12 +28,16 @@ public class VelocityFactory {
         context.put("BudgetTeam" , model.getBudgetYear());
         List<PlayerVelocityResponse> players = new ArrayList<>();
         for (PlayerModel playerModel : model.getPlayerModel()) {
-            players.add(mapper.toPlayerVelocityResponse(playerModel));
+            PlayerVelocityResponse playerVelocity = mapper.toPlayerVelocityResponse(playerModel);
+            playerVelocity.setVelocityId();
+            players.add(playerVelocity);
         }
         context.put("Players" , players);
         List<ChampionshipVelocityResponse> championsships = new ArrayList<>();
         for (ChampionshipModel campionshipModel : model.getChampionshipModel()){
-            championsships.add(mapper.toChampionshipVelocity(campionshipModel));
+            ChampionshipVelocityResponse championsshipsVelocity = mapper.toChampionshipVelocity(campionshipModel);
+            championsshipsVelocity.setVelocityId();
+            championsships.add(championsshipsVelocity);
         }
         context.put("Championship" , championsships);
         return context;

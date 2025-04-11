@@ -2,7 +2,7 @@ package com.puricellafederico.my_app_calcio.service;
 
 import com.puricellafederico.my_app_calcio.Dao.TeamRepository;
 import com.puricellafederico.my_app_calcio.factory.VelocityFactory;
-import com.puricellafederico.my_app_calcio.model.RichiestaPythonChiamata;
+import com.puricellafederico.my_app_calcio.model.DateTrasferimentModel;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
 import com.puricellafederico.my_app_calcio.customException.ExceptionSquadra;
 import com.puricellafederico.my_app_calcio.factory.Mapper;
@@ -11,14 +11,13 @@ import com.puricellafederico.my_app_calcio.model.TeamModel;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamPlayerResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.validation.constraints.NotBlank;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +50,9 @@ public class TeamService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+//    @PersistenceContext
+//    private EntityManager entityManager;
 
     @Transactional
     public void updateTeam(String name, String outCome) {
@@ -120,6 +122,23 @@ public class TeamService {
         }
     }
 
+//    @Transactional(readOnly = true)
+//    public String getPredictPlayer(@NotBlank(message = "Error name not null") String nameTeam, @NotBlank(message = "Error name not null") String namePlayerBuy) {
+//        String url = "http://localhost:5000/api/saluta";
+//        String sql = "SELECT d FROM DateTrasferimentModel d";
+//
+//        List<DateTrasferimentModel> listDati = entityManager.createQuery(sql , DateTrasferimentModel.class).getResultList();
+//        URI uri = UriComponentsBuilder.fromUriString(url)
+//                .queryParam("dati", listDati)
+//                .queryParam("datiTeam", listDati)
+//                .build()
+//                .encode()
+//                .toUri();
+//
+//        ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+//        return null;
+//    }
+
 
     private TeamResponse checkTeamName(String name, List<TeamModel> modelList) {
         for (TeamModel teamModel : modelList) {
@@ -166,14 +185,4 @@ public class TeamService {
         return responsePlayer;
     }
 
-    public String getPredictPlayer(@NotBlank(message = "Error name not null") String nameTeam, @NotBlank(message = "Error name not null") String namePlayerBuy) {
-        String url = "http://localhost:5000/api/saluta";
-        URI uri = UriComponentsBuilder.fromUriString(url)
-                .queryParam("nome", "Mario")
-                .build()
-                .encode()
-                .toUri();
-        ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
-        return null;
-    }
 }

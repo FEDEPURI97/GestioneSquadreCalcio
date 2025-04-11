@@ -7,4 +7,7 @@ public class PlayerVelocityResponse extends PlayerForTeamResponse{
 
     private Integer id;
 
+    public void setVelocityId() {
+        this.id *= 10;
+    }
 }
