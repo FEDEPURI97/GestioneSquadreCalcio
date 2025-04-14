@@ -1,4 +1,8 @@
 package com.puricellafederico.my_app_calcio.factory;
+import com.puricellafederico.my_app_calcio.dto.DatePlayerForAnalistDto;
+import com.puricellafederico.my_app_calcio.dto.DateStoricTrasferimentDto;
+import com.puricellafederico.my_app_calcio.dto.DateTrasferimentDto;
+import com.puricellafederico.my_app_calcio.model.DateTrasferimentModel;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipResponse;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipVelocityResponse;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipWhitTeamResponse;
@@ -13,6 +17,8 @@ import com.puricellafederico.my_app_calcio.model.TeamModel;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamPlayerResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamStaticsResponse;
+
+import java.util.List;
 
 
 @org.mapstruct.Mapper(componentModel = "spring")
@@ -39,4 +45,8 @@ public interface Mapper {
     ChampionshipVelocityResponse toChampionshipVelocity(ChampionshipModel campionshipModel);
 
     PlayerVelocityResponse toPlayerVelocityResponse(PlayerModel playerModel);
+
+    DateTrasferimentDto toDateTrasferimentDto(List<DateStoricTrasferimentDto> listDateTrasferiment, Integer budgetTeamBuy, DatePlayerForAnalistDto datePlayer);
+
+    DateStoricTrasferimentDto toDateStoricTrasferiment(DateTrasferimentModel dateTrasferimentModel);
 }

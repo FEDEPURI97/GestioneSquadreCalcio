@@ -1,6 +1,10 @@
 package com.puricellafederico.my_app_calcio.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.puricellafederico.my_app_calcio.Dao.TeamRepository;
+import com.puricellafederico.my_app_calcio.dto.DatePlayerForAnalistDto;
+import com.puricellafederico.my_app_calcio.dto.DateStoricTrasferimentDto;
+import com.puricellafederico.my_app_calcio.dto.DateTrasferimentDto;
 import com.puricellafederico.my_app_calcio.factory.VelocityFactory;
 import com.puricellafederico.my_app_calcio.model.DateTrasferimentModel;
 import com.puricellafederico.my_app_calcio.response.playerResponse.PlayerForTeamResponse;
@@ -18,14 +22,15 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.*;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -51,8 +56,8 @@ public class TeamService {
     @Autowired
     private RestTemplate restTemplate;
 
-//    @PersistenceContext
-//    private EntityManager entityManager;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Transactional
     public void updateTeam(String name, String outCome) {
@@ -122,22 +127,31 @@ public class TeamService {
         }
     }
 
-//    @Transactional(readOnly = true)
-//    public String getPredictPlayer(@NotBlank(message = "Error name not null") String nameTeam, @NotBlank(message = "Error name not null") String namePlayerBuy) {
-//        String url = "http://localhost:5000/api/saluta";
-//        String sql = "SELECT d FROM DateTrasferimentModel d";
-//
-//        List<DateTrasferimentModel> listDati = entityManager.createQuery(sql , DateTrasferimentModel.class).getResultList();
-//        URI uri = UriComponentsBuilder.fromUriString(url)
-//                .queryParam("dati", listDati)
-//                .queryParam("datiTeam", listDati)
-//                .build()
-//                .encode()
-//                .toUri();
-//
-//        ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
-//        return null;
-//    }
+    @Transactional(readOnly = true)
+    public String getPredictPlayer(String nameTeam , String namePlayerBuy , String surnamePlayerBuy) throws JsonProcessingException {
+        String url = "http://localhost:5000/requestPrediction";
+        String sql = "SELECT d FROM DateTrasferimentModel d";
+        List<DateTrasferimentModel> listDateModel = entityManager.createQuery(sql , DateTrasferimentModel.class).getResultList();
+        List<DateStoricTrasferimentDto> listDateTrasferiment = new ArrayList<>();
+        for (DateTrasferimentModel dateTrasferimentModel : listDateModel) {
+            listDateTrasferiment.add(mapper.toDateStoricTrasferiment(dateTrasferimentModel));
+        }
+        sql = "SELECT s.budgetYear FROM squadre s WHERE s.name LIKE :name";
+        Integer budgetTeamBuy = entityManager.createQuery(sql , Integer.class)
+                .setParameter("name" , nameTeam.concat("%"))
+                .getSingleResult();
+        sql = "SELECT new com.puricellafederico.my_app_calcio.dto.DatePlayerForAnalistDto(p.salary, t.budgetYear)" +
+               "FROM giocatori p JOIN p.team t WHERE p.name LIKE :name AND p.surname LIKE :surname";
+        DatePlayerForAnalistDto datePlayer = entityManager.createQuery(sql , DatePlayerForAnalistDto.class).
+                setParameter("name" , namePlayerBuy.concat("%")).
+                setParameter("surname" , surnamePlayerBuy.concat("%")).getSingleResult();
+        DateTrasferimentDto dateInput = mapper.toDateTrasferimentDto(listDateTrasferiment , budgetTeamBuy , datePlayer);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<DateTrasferimentDto> request = new HttpEntity<>(dateInput, headers);
+        ResponseEntity<Integer> response = restTemplate.postForEntity(url , request, Integer.class);
+        return null;
+    }
 
 
     private TeamResponse checkTeamName(String name, List<TeamModel> modelList) {

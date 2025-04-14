@@ -1,5 +1,6 @@
 package com.puricellafederico.my_app_calcio.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.puricellafederico.my_app_calcio.response.championshipResponse.ChampionshipInterfaceResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamPlayerResponse;
 import com.puricellafederico.my_app_calcio.response.teamResponse.TeamResponse;
@@ -182,10 +183,11 @@ public class TeamController {
                 .body(new InputStreamResource(inputStream));
     }
 
-    @GetMapping("/getTeamPricePlayerPredict/{nameTeam}/{namePlayerBuy}")
+    @GetMapping("/getTeamPricePlayerPredict/{nameTeam}/{namePlayerBuy}/{surnamePlayerBuy}")
     public ResponseEntity<String> getTeamMatchOutCome(@PathVariable @NotBlank(message = "Error name not null") String nameTeam ,
-                                                      @PathVariable @NotBlank(message = "Error name not null") String namePlayerBuy){
-        return ResponseEntity.status(HttpStatus.OK).body(service.getPredictPlayer(nameTeam , namePlayerBuy));
+                                                      @PathVariable @NotBlank(message = "Error name not null") String namePlayerBuy ,
+                                                      @PathVariable @NotBlank(message = "Error name not null") String surnamePlayerBuy) throws JsonProcessingException {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getPredictPlayer(nameTeam , namePlayerBuy ,surnamePlayerBuy));
     }
 
 
