@@ -18,12 +18,10 @@
 ## 🛠️ Comandi Maven
 
 Per compilare e avviare il progetto Spring Boot, utilizzare i seguenti comandi da terminale:
-
 ```bash
 mvn clean install
 mvn spring-boot:run
 
-🌐 Interfaccia Swagger
+## 🌐 Interfaccia swagger
 Una volta avviata l’applicazione, è possibile accedere alla documentazione delle API tramite Swagger:
-
-🔗 http://localhost:8080/swagger-ui.html
+http://localhost:8080/swagger-ui.html
