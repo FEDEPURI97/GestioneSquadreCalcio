@@ -1,15 +1,29 @@
-# GestioneSquadreCalcio
-configurazioni:
-postgres: 
-porta : localhost:5432
-nome db : progettosquadre
-username : postgres
-password : fred
-Nella cartella resources/setUpDb si puo trovare il ddl per la creazione delle tabelle e il dml per le insert
+# ⚽ GestioneSquadreCalcio
 
-comandi maven : mvn clean install , mvn spring-boot:run
+## 🔧 Configurazioni Database (PostgreSQL)
 
-Una volta finite le configurazioni per testare il codice andare al seguente link per l'interfaccia swagger : 
-http://localhost:8080/swagger-ui.html 
+- **Host**: `localhost`  
+- **Porta**: `5432`  
+- **Nome Database**: `progettosquadre`  
+- **Username**: `postgres`  
+- **Password**: `fred`  
 
-Le configurazioni di questo progetto prevedono la vista in console delle query eseguite da spring data jpa;
+📁 Nella cartella `resources/setUpDb` sono disponibili:
+
+- **DDL**: script per la creazione delle tabelle  
+- **DML**: script con i dati di insert
+
+---
+
+## 🛠️ Comandi Maven
+
+Per compilare e avviare il progetto Spring Boot, utilizzare i seguenti comandi da terminale:
+
+```bash
+mvn clean install
+mvn spring-boot:run
+
+🌐 Interfaccia Swagger
+Una volta avviata l’applicazione, è possibile accedere alla documentazione delle API tramite Swagger:
+
+🔗 http://localhost:8080/swagger-ui.html
