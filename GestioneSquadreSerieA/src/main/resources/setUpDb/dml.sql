@@ -1,3 +1,28 @@
+INSERT INTO public.squadre (id,nome,numero_giocatori,budget_annuale,vittorie,sconfitte,pareggio) VALUES
+	 (1,'Juventus',25,280,1,18,3),
+	 (4,'Napoli',25,210,2,15,5),
+	 (5,'Roma',25,200,12,5,5),
+	 (6,'Lazio',24,180,13,9,0),
+	 (7,'Atalanta',23,150,12,2,8),
+	 (8,'Fiorentina',24,140,15,2,5),
+	 (9,'Torino',25,110,1,21,0),
+	 (10,'Bologna',24,100,16,6,0),
+	 (11,'Monza',25,95,2,19,1),
+	 (12,'Sassuolo',24,90,1,19,1);
+INSERT INTO public.squadre (id,nome,numero_giocatori,budget_annuale,vittorie,sconfitte,pareggio) VALUES
+	 (13,'Lecce',25,70,16,1,5),
+	 (14,'Genoa',24,85,1,18,3),
+	 (15,'Cagliari',25,75,3,16,3),
+	 (16,'Empoli',24,60,3,15,4),
+	 (17,'Udinese',25,80,2,18,0),
+	 (18,'Verona',24,65,5,16,0),
+	 (19,'Frosinone',25,55,0,20,2),
+	 (20,'Salernitana',24,50,1,6,5),
+	 (2,'Inter',28,260,1,10,11),
+	 (3,'Milan',26,240,20,0,0);
+
+
+
 INSERT INTO public.campionato (nome_torneo,premio_primo_posto,premio_secondo_posto,premio_terzo_posto,premio_base_partecipazione) VALUES
 	 ('Serie A',10000000,5000000,2500000,'1000000.00'),
 	 ('Coppa Italia',2000000,1000000,500000,'500000.00');
@@ -25,28 +50,6 @@ INSERT INTO public.campionato_in_corso (id_campionato,id_squadra) VALUES
 	 (1,3),
 	 (1,2);
 
-INSERT INTO public.squadre (id,nome,numero_giocatori,budget_annuale,vittorie,sconfitte,pareggio) VALUES
-	 (1,'Juventus',25,280,1,18,3),
-	 (4,'Napoli',25,210,2,15,5),
-	 (5,'Roma',25,200,12,5,5),
-	 (6,'Lazio',24,180,13,9,0),
-	 (7,'Atalanta',23,150,12,2,8),
-	 (8,'Fiorentina',24,140,15,2,5),
-	 (9,'Torino',25,110,1,21,0),
-	 (10,'Bologna',24,100,16,6,0),
-	 (11,'Monza',25,95,2,19,1),
-	 (12,'Sassuolo',24,90,1,19,1);
-INSERT INTO public.squadre (id,nome,numero_giocatori,budget_annuale,vittorie,sconfitte,pareggio) VALUES
-	 (13,'Lecce',25,70,16,1,5),
-	 (14,'Genoa',24,85,1,18,3),
-	 (15,'Cagliari',25,75,3,16,3),
-	 (16,'Empoli',24,60,3,15,4),
-	 (17,'Udinese',25,80,2,18,0),
-	 (18,'Verona',24,65,5,16,0),
-	 (19,'Frosinone',25,55,0,20,2),
-	 (20,'Salernitana',24,50,1,6,5),
-	 (2,'Inter',28,260,1,10,11),
-	 (3,'Milan',26,240,20,0,0);
 
 INSERT INTO public.giocatori (nome,cognome,data_nascita,ruolo,id_squadra,stipendio,numero_maglia) VALUES
 	 ('Wojciech','Szczesny','1990-04-18 00:00:00','Portiere',1,6000000,1),

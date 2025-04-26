@@ -17,6 +17,16 @@ CREATE TABLE campionato_in_corso (
     FOREIGN KEY (id_squadra) REFERENCES squadre(id) ON DELETE CASCADE
 );
 
+CREATE TABLE squadre (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    numero_giocatori INTEGER NOT NULL,
+    budget_annuale DECIMAL(15, 2) NOT NULL,
+    vittorie INTEGER DEFAULT 0,
+    sconfitte INTEGER DEFAULT 0,
+    pareggio INTEGER DEFAULT 0
+);
+
 CREATE TABLE giocatori (
     id_giocatore SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -27,16 +37,6 @@ CREATE TABLE giocatori (
     stipendio DECIMAL(10, 2),
     numero_maglia INTEGER,
     FOREIGN KEY (id_squadra) REFERENCES squadre(id) ON DELETE CASCADE
-);
-
-CREATE TABLE squadre (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    numero_giocatori INTEGER NOT NULL,
-    budget_annuale DECIMAL(15, 2) NOT NULL,
-    vittorie INTEGER DEFAULT 0,
-    sconfitte INTEGER DEFAULT 0,
-    pareggi INTEGER DEFAULT 0
 );
 
 CREATE TABLE trasferimenti (
