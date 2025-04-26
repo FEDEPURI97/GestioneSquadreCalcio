@@ -1,10 +1,16 @@
 package com.puricellafederico.my_app_calcio.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "trasferimenti")
+@Getter
+@Setter
 public class DateTrasferimentModel {
 
     @Id

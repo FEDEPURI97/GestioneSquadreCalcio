@@ -11,6 +11,6 @@ public class DateTrasferimentDto {
 
     private Integer budgetTeamBuy;
 
-    private List<DateTrasferimentDto> listDateTrasferiment;
+    private List<DateStoricTrasferimentDto> listDateTrasferiment;
 
 }
