@@ -49,7 +49,7 @@ public class TeamController {
     )
     @PutMapping("/updateMatch/{name}/{outCome}")
     public ResponseEntity<String> updateWinLoseDraw(@PathVariable @NotBlank(message = "Error name not null") String name ,
-                                                    @PathVariable  @Pattern(regexp = "(win|lose|draw|WIN|LOSE|DRA)",
+                                                    @PathVariable  @Pattern(regexp = "(win|lose|draw|WIN|LOSE|DRAW)",
                                                             message = "Error value option is 'win', 'lose' , 'draw' or this value uppercase")String outCome){
         service.updateTeam(name , outCome);
         return ResponseEntity.status(HttpStatus.OK).body("UpdateTeamSuccessFull");

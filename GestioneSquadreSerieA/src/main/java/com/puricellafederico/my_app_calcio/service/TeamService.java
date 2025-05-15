@@ -115,15 +115,20 @@ public class TeamService {
                 orElseThrow(() -> new ExceptionSquadra("Squadra nome non trovato"));
         VelocityContext context = velocityFactory.getContext(model);
         Writer writer = new StringWriter();
-        template.merge(context , writer);
+        template.merge(context, writer);
+        File tempFile = null;
         try {
-            File tempFile = File.createTempFile("team-diagram-", ".puml");
+            tempFile = File.createTempFile("team-diagram-", ".puml");
             try (FileWriter fileWriter = new FileWriter(tempFile)) {
                 fileWriter.write(writer.toString());
             }
             return new FileInputStream(tempFile);
         } catch (IOException e) {
             throw new RuntimeException("Errore nella generazione del diagramma", e);
+        } finally {
+            if (tempFile != null && tempFile.exists()) {
+                tempFile.deleteOnExit();
+            }
         }
     }
 
